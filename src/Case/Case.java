@@ -5,13 +5,13 @@ import java.util.Scanner;
 public class Case {
     private String name;
     private String description;
-    private String importance;
-    private boolean status;
+    private Importance importance;
+    private Status status;
 
     public Case() {
     }
 
-    public Case(String name, String description, String importance, boolean status) {
+    public Case(String name, String description, Importance importance, Status status) {
         this.name = name;
         this.description = description;
         this.importance = importance;
@@ -26,11 +26,11 @@ public class Case {
         this.description = description;
     }
 
-    public String getImportance() {
+    public Importance getImportance() {
         return importance;
     }
 
-    public void setImportance(String importance) {
+    public void setImportance(Importance importance) {
         this.importance = importance;
     }
 
@@ -42,11 +42,11 @@ public class Case {
         this.name = name;
     }
 
-    public boolean isStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
@@ -76,12 +76,12 @@ public class Case {
         if (in.hasNextLine()) {
             str = in.nextLine();
         }
-        importance = str;
+        importance = Importance.UNKNOWN.getByString(str);
         System.out.println("Введите статус выполнения дела - true/false: ");
         if (in.hasNextLine()) {
             str = in.nextLine();
         }
-        status = str.equals("true");
+        status = Status.NOT_DONE.getByString(str);
         return this;
     }
 }

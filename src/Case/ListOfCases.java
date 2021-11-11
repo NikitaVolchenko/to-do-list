@@ -24,8 +24,8 @@ public class ListOfCases {
     }
 
     public void markAsCompleted(int i) {
-        if (i > 0 && i < toDoList.size()) {
-            toDoList.get(i).setStatus(true);
+        if (i >= 0 && i < toDoList.size()) {
+            toDoList.get(i).setStatus(Status.DONE);
         }
     }
 
@@ -34,19 +34,19 @@ public class ListOfCases {
             System.out.println("Индекс: " + i);
             System.out.println("Дело: " + toDoList.get(i).getName());
             System.out.println("Описание: " + toDoList.get(i).getDescription());
-            System.out.println("Важность: " + toDoList.get(i).getImportance());
-            System.out.println("Сатус: " + toDoList.get(i).isStatus());
+            System.out.println("Важность: " + Importance.UNKNOWN.getByImportance(toDoList.get(i).getImportance()));
+            System.out.println("Сатус: " + Status.NOT_DONE.getByStatus(toDoList.get(i).getStatus()));
         }
     }
 
     public void showListOfCompletedCases() {
         for (int i = 0; i < toDoList.size(); i++) {
-            if (toDoList.get(i).isStatus()) {
+            if (toDoList.get(i).getStatus().isValue()) {
                 System.out.println("Индекс: " + i);
                 System.out.println("Дело: " + toDoList.get(i).getName());
                 System.out.println("Описание: " + toDoList.get(i).getDescription());
-                System.out.println("Важность: " + toDoList.get(i).getImportance());
-                System.out.println("Сатус: " + toDoList.get(i).isStatus());
+                System.out.println("Важность: " + Importance.UNKNOWN.getByImportance(toDoList.get(i).getImportance()));
+                System.out.println("Сатус: " + Status.NOT_DONE.getByStatus(toDoList.get(i).getStatus()));
             }
         }
     }

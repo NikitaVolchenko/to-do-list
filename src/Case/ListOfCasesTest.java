@@ -12,15 +12,15 @@ public class ListOfCasesTest {
         ListOfCases listOfCases = new ListOfCases();
         List<Case> list = new ArrayList<>();
 
-        Case case1 = new Case("дело", "дельное", "дело всей жизни", false);
+        Case case1 = new Case("дело", "дельное", Importance.UNKNOWN.getByString("важно"), Status.NOT_DONE.getByString("не выполнено"));
         listOfCases.addCase(case1);
         list.add(case1);
 
-        case1 = new Case("дело1", "дельное1", "дело всей жизни1", true);
+        case1 = new Case("дело1", "дельное1", Importance.UNKNOWN.getByString("неважно"), Status.NOT_DONE.getByString("выполнено"));
         listOfCases.addCase(case1);
         list.add(case1);
 
-        case1 = new Case("дело2", "дельное2", "дело всей жизни2", false);
+        case1 = new Case("дело2", "дельное2", Importance.UNKNOWN.getByString("некритично"), Status.NOT_DONE.getByString("не выполнено"));
         listOfCases.addCase(case1);
         list.add(case1);
 
@@ -30,6 +30,6 @@ public class ListOfCasesTest {
         Assertions.assertEquals(list.size() - 1, listOfCases.size());
 
         listOfCases.markAsCompleted(1);
-        Assertions.assertTrue(listOfCases.getToDoList().get(1).isStatus());
+        Assertions.assertTrue(listOfCases.getToDoList().get(1).getStatus().isValue());
     }
 }

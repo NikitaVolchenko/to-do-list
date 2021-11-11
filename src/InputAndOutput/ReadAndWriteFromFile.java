@@ -30,14 +30,14 @@ public class ReadAndWriteFromFile {
                     buff.append((char) value);
                     value = in.read();
                 }
-                case1.setImportance(buff.toString().replace("\n", "").replace("\r", ""));
+                case1.setImportance(Importance.UNKNOWN.getByString(buff.toString().replace("\n", "").replace("\r", "")));
                 buff = new StringBuilder();
                 value = in.read();
                 while (value != '.') {
                     buff.append((char) value);
                     value = in.read();
                 }
-                case1.setStatus(buff.toString().replace("\n", "").replace("\r", "").equals("true"));
+                case1.setStatus(Status.NOT_DONE.getByString(buff.toString().replace("\n", "").replace("\r", "")));
                 value = in.read();
                 cases.addCase(case1);
                 while (value == '\n' || value == '\r') {
@@ -55,8 +55,8 @@ public class ReadAndWriteFromFile {
             for (int i = 0; i < cases.size(); i++) {
                 out.write(cases.getToDoList().get(i).getName() + "." + '\n');
                 out.write(cases.getToDoList().get(i).getDescription() + "." + '\n');
-                out.write(cases.getToDoList().get(i).getImportance() + "." + '\n');
-                out.write(cases.getToDoList().get(i).isStatus() + "." + '\n' + '\n');
+                out.write(Importance.UNKNOWN.getByImportance(cases.getToDoList().get(i).getImportance()) + "." + '\n');
+                out.write(Status.NOT_DONE.getByStatus(cases.getToDoList().get(i).getStatus()) + "." + '\n' + '\n');
             }
         } catch (IOException e) {
             e.printStackTrace();
